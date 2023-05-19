@@ -14,7 +14,7 @@
   const props = withDefaults(defineProps<{
     circle?: boolean,
     label?: string,
-    size: 's' | 'm' | 'l',
+    size?: 's' | 'm' | 'l',
     type?: 'button' | 'submit',
     disabled?: boolean,
   }>(), {
@@ -36,6 +36,7 @@
 
 <template>
 	<button 
+      :name="id"
       :class="{
         circle: props.circle,
       }"
@@ -43,11 +44,21 @@
       :type="props.type" 
       @click.stop="onClick"
     >
-    <slot></slot>
+    <TransitionGroup tag="div" name="crossfade" class="container">
+      <div v-if="!loading.isLoading(id)">
+        <slot></slot>
+      </div>
+      <div v-else>
+        Loading
+      </div>
+  </TransitionGroup>
+    
   </button>
 </template>
 
 <style scoped lang="scss">
+@import url(../transitions/crossfade.scss);
+
 button {
   user-select: none;
   padding: var(--space-m);

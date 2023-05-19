@@ -1,6 +1,7 @@
 import type { InjectedLoadingContext } from "./context";
 
-type KatnissEvent<T> = {
+export type KatnissEvent<T> = {
+    value: T,
     isAsync: ()=>()=>void;
 }
 
@@ -9,7 +10,7 @@ type Props<T> = {
     value: T,
     loading: InjectedLoadingContext,
 }
-const createEvent = <T>({name, value, loading}: Props<T>)=>{
+const createEvent = <T>({name, value, loading}: Props<T>): KatnissEvent<T>=>{
     return {
         value,
         isAsync: ()=>{

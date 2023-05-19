@@ -35,9 +35,11 @@
     return values;
   }
 
-  const onSubmit = ()=>{
+  const onSubmit = (e:Event & {submitter?: {name?: string}})=>{
+    const name = e.submitter?.name ?? id;
+    console.log('name of event',{name});
     emit('submit', createEvent({
-      name: id,
+      name,
       value: getFormValues(),
       loading,
     }));

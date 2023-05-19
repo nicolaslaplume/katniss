@@ -97,6 +97,7 @@ html, body, #app {
   height: var(--app-height);
 }
 
-*:disabled, .disabled {
+*:disabled {
   opacity: 0.5;
+  pointer-events: none;
 }
