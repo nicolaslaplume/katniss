@@ -1,3 +1,18 @@
+:root {
+  --font-size: 16px;
+
+  --space-s: 4px;
+  --space-n: 8px;
+  --space-l: 12px;
+
+  --speed-f: 0.2s;
+  --speed-n: 0.4s;
+  --speed-s: 1s;
+  --speed-xs: 2s;
+}
+:root {
+  --app-height: 100%;
+}
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
@@ -56,18 +71,32 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  outline-offset: var(--space-s);
 }
 
 body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
+  transition: color var(--speed-n), background-color var(--speed-n);
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: 15px;
+  font-size: var(--font-size);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #app {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  height: var(--app-height);
+}
+
+*:disabled, .disabled {
+  opacity: 0.5;
 }
