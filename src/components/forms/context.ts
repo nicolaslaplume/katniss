@@ -6,9 +6,10 @@ const LoadingContext = {
         const loadingList = ref<string[]>([]);
         provide(loadingSymbol, loadingList);
         return {
-            isLoading(){
+            isFormLoading(){
                 return loadingList.value.length > 0;
             },
+            isSelfLoading(){return false},
             setLoading(name: string, isLoading: boolean){
                 loadingList.value = loadingList.value.filter(e=>e!==name);
                 if (isLoading) {
@@ -19,15 +20,19 @@ const LoadingContext = {
     },
     inject: ()=>{
         const loadingList = inject<Ref<string[]>>(loadingSymbol);
+        const selfLoading = ref(false);
         return {
-            isLoading(name?: string){
-                if (name) return loadingList?.value.includes(name);
+            isFormLoading(){
                 return (loadingList?.value ?? []).length > 0;
             },
-            setLoading(name: string, isLoading: boolean){
+            isSelfLoading(name: string){
+                return selfLoading.value || loadingList?.value.includes(name);
+            },
+            setLoading(name: string, isLoading: boolean, blockForm = true){
+                selfLoading.value = isLoading;
                 if (loadingList) {
                     loadingList.value = loadingList.value.filter(e=>e!==name);
-                    if (isLoading) {
+                    if (isLoading && blockForm) {
                         loadingList.value.push(name);
                     }
                 }

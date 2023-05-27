@@ -1,30 +1,9 @@
 <script setup lang="ts">
-import { Flex, Form, Button, Input } from './components';
-import type {KatnissEvent} from './components'
-
-const wait = ()=>new Promise(r=>setTimeout(r, 4000));
-
-const onSubmit = async ({value, isAsync}: KatnissEvent<{name: string}>)=>{
-  const done = isAsync();
-  await wait();
-  console.log(value);
-  done();
-}
-
-
+import BoxTest from './testarea/BoxTest.vue';
+import FormTest from './testarea/FormTest.vue';
+import FlexTest from './testarea/FlexTest.vue';
 </script>
 
 <template>
-  <Form @submit="onSubmit">
-    <Flex dir='column' >
-      <Input name="name"/>
-      <Button  type="submit">
-        Submit
-      </Button>
-    </Flex>
-  </Form>
+  <FormTest/>
 </template>
-
-<style scoped>
-
-</style>

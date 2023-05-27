@@ -2,6 +2,7 @@
 // ToDo Toggle, size, spinner,
 // color, dontBubbleLoading,
 
+import type {SemanticActivecolor} from '../types';
   import {uniqueId} from 'lodash';
   import { LoadingContext, DisabledContext } from './context';
   import { createEvent } from './KatnissEvent';
@@ -12,16 +13,16 @@
   const formDisabled = DisabledContext.inject();
 
   const props = withDefaults(defineProps<{
+    color?: SemanticActivecolor;
     circle?: boolean,
     label?: string,
-    size?: 's' | 'm' | 'l',
     type?: 'button' | 'submit',
     disabled?: boolean,
   }>(), {
+    color: 'primary',
     circle: false,
     type: 'button',
     label: '',
-    size: 'm',
     disabled: false,
   });
 
@@ -37,35 +38,39 @@
 <template>
 	<button 
       :name="id"
+      class="button"
       :class="{
         circle: props.circle,
+        [`color-${props.color}`]: true,
       }"
-      :disabled="loading.isLoading() || formDisabled.isDisabled() || props.disabled" 
+      :disabled="loading.isFormLoading() || loading.isSelfLoading(id) || formDisabled.isDisabled() || props.disabled" 
       :type="props.type" 
       @click.stop="onClick"
     >
     <TransitionGroup tag="div" name="crossfade" class="container">
-      <div v-if="!loading.isLoading(id)">
+      <div  :class="{
+        hidable: true,
+        hidden: loading.isSelfLoading(id)
+        }">
         <slot></slot>
       </div>
-      <div v-else>
-        Loading
+      <div class="spinner" v-if="loading.isSelfLoading(id)">
+        L
       </div>
   </TransitionGroup>
     
   </button>
 </template>
 
-<style scoped lang="scss">
-@import url(../transitions/crossfade.scss);
+<style scoped lang='scss'>
+@import url(../transitions/crossfade.css);
 
-button {
+.button {
   user-select: none;
   padding: var(--space-m);
 
   border-style: solid;
   border-width: 2px;
-  border-color: red;
 
   cursor: pointer;
 
@@ -93,6 +98,19 @@ button {
     &:active {
         filter: brightness(0.6) sepia(0.4) saturate(0.2);
     }
+  }
+
+  .hidable {
+    transition: opacity var(--speed-n);
+    &.hidden {
+      opacity: 0;
+    }
+  }
+  .spinner {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
   }
 }
 /*

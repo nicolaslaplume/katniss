@@ -1,8 +1,18 @@
 <script setup lang="ts">
+    import type {Size} from '../types';
   withDefaults(defineProps<{
     dir: 'column' | 'row',
+    gap: Size,
+    padding: Size,
+    screen: boolean,
+    justify: 'center' | 'start' | 'end';
+    align: "center" | "start" | "end" | "stretch";
   }>(), {
-    dir: 'column'
+    gap: 'm',
+    padding: 'm',
+    justify: 'center',
+    align: 'center',
+    screen: false,
   });
 </script>
 
@@ -12,18 +22,19 @@
     :class="{
         column: dir === 'column',
         row: dir === 'row',
+        screen,
+        [`gap-${gap}`]: true,
+        [`padding-${padding}`]: true,
+        [`justify-${justify}`]: true,
+        [`align-${align}`]: true,
     }">
         <slot></slot>
     </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .flex {
     display: flex;
-    gap: var(--space-m);
-    padding: var(--space-m);
-    justify-content: center;
-    align-items: center;
 
     &.column {
         flex-direction: column;
@@ -44,6 +55,12 @@
     & > .flex {
         padding: 0;
     }
-}
 
+    &.screen {
+        min-width: 100vw;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+}
 </style>

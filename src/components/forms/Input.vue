@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import {uniqueId} from 'lodash';
   import { LoadingContext, DisabledContext, ValidContext } from './context';
+import { ref, watch } from 'vue';
   const id = uniqueId();
+  const emit = defineEmits(['update:modelValue']);
+
 
   const loading = LoadingContext.inject();
   const formDisabled = DisabledContext.inject();
@@ -22,17 +25,63 @@
     disabled: false,
     modelValue: '',
   });
+
+  const valueRef = ref(props.modelValue);
+  watch(()=>props.modelValue,()=>{
+    valueRef.value = props.modelValue;
+  });
+
+  const onUpdate = ({target}: Event )=>{
+    const value = (target && 'value' in target)? target.value as string : '';
+    valueRef.value = value;
+    emit('update:modelValue', value);
+  };
+
+  const name = props.name ?? id;
+
 </script>
 
 <template>
+  <div class="container">
+    <label class="label" :class="{
+      hasText: valueRef.length > 0,
+    }" :for="id">{{ props.label }}</label>
     <input 
-        :disabled="loading.isLoading() || formDisabled.isDisabled() || props.disabled"
-        :name="props.name"
+        :id="id"
+        class="input"
+        :disabled="loading.isFormLoading() || loading.isSelfLoading(name) || formDisabled.isDisabled() || props.disabled"
+        :name="name"
         :type="props.type"
-        :v-model="props.modelValue" 
-        @change:modelValue=""/>
+        :value="valueRef"
+        @input="onUpdate"
+        />
+      </div>
 </template>
 
 <style scoped lang="scss">
+
+.container {
+  position: relative;
+  padding-top: 12px;
+
+  .label {
+    position: absolute;
+    transform: translate(var(--space-l), var(--space-s));
+    transition: transform 0s;
+    color: var(--c-support);
+
+    &.hasText {
+        transform: translate(var(--space-l), calc(-1 * var(--space-xl)));
+    }
+  }
+
+  .input {
+    border-radius:  var(--space-m);
+    border: none;
+    padding: var(--space-m) var(--space-l);
+  }
+
+
+}
 
 </style>

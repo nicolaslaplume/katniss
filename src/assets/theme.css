@@ -1,0 +1,26 @@
+:root {
+    --font-size: 16px;
+  
+    --space-xs: 2px;
+    --space-s: 4px;
+    --space-m: 8px;
+    --space-l: 12px;
+    --space-xl: 24px;
+  
+    --speed-f: 0.2s;
+    --speed-n: 0.4s;
+    --speed-s: 1s;
+    --speed-xs: 2s;
+  }
+
+
+:root {
+    --c-white: #f7f1e3;
+    --c-main: #181818;;
+    --c-support: #84817a;
+    --c-primary: #474787;
+    --c-info: #227093;
+    --c-warn: #cc8e35;
+    --c-error: #b33939;
+    --c-success: #218c74;    
+}
