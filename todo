@@ -1,0 +1,63 @@
+Forms
+    Button size, toggle
+    Input Validation
+    Form data connection
+    Button Group
+    Checkbox Investigate spacing difference when theres a label
+    RadioButton
+        as "Checkbox"
+        as "Toggable Buttons Group"
+    FloatingAction
+    Rating
+    Select *
+    Slider *
+
+Portals
+    Tooltip
+    Notification
+    Modal Dialog
+    Drawer
+    Alert / Prompt
+
+Surfaces
+    Accordion
+    Tabs
+    Header
+        Dynamic Allow injects from any place?
+    Footer
+
+Navigation
+    Breadcrumbs
+    ContextMenu
+    Pagination
+    Link
+        Router
+        PreviewableLink (hover tooltip)
+
+Table
+    sortable, pagination, sticky header
+
+Validators
+    validation messages
+
+Other
+    Spinner
+    Animation Transitions
+    Typography (span / headings)
+    Badge (animation)
+    Chip
+    Skeleton
+    Speed Dial Menu
+
+Documentation
+
+A11Y
+Event Tracking (just support view/click events)
+Language Support (just a standarized method to do it)
+
+
+
+
+
+
+Multiple States Checkbox ? like a button that switches between multiple values and not just 2
