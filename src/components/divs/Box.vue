@@ -1,11 +1,11 @@
 <script setup lang="ts">
     import type {Size, SemanticColor} from '../types';
   withDefaults(defineProps<{
-    color: SemanticColor;
-    inverted: boolean;
-    padding: Size;
-    shadow: boolean;
-    displaced: boolean;
+    color?: SemanticColor;
+    inverted?: boolean;
+    padding?: Size;
+    shadow?: boolean;
+    displaced?: boolean;
   }>(), {
     padding: 'm',
     shadow: false,

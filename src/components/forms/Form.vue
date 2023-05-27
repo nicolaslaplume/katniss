@@ -3,6 +3,13 @@
   import { uniqueId } from 'lodash';
   import { LoadingContext, DisabledContext, ValidContext} from './context';
   import { createEvent } from './KatnissEvent';
+  const props = withDefaults(defineProps<{
+    disabled?: boolean,
+    // attachStorage?: boolean,
+  }>(), {
+    disabled: false,
+  });
+  
   const id = uniqueId();
   const emit = defineEmits(['submit']);
 
@@ -10,12 +17,7 @@
   const formDisabled = DisabledContext.provide();
   ValidContext.provide();
 
-  const props = withDefaults(defineProps<{
-    disabled?: boolean,
-    // attachStorage?: boolean,
-  }>(), {
-    disabled: false,
-  });
+  
 
   watch(()=>props.disabled, ()=>{
     formDisabled.value = props.disabled;
@@ -37,7 +39,6 @@
 
   const onSubmit = (e:Event & {submitter?: {name?: string}})=>{
     const name = e.submitter?.name ?? id;
-    console.log('name of event',{name});
     emit('submit', createEvent({
       name,
       value: getFormValues(),

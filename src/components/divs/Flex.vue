@@ -2,11 +2,11 @@
     import type {Size} from '../types';
   withDefaults(defineProps<{
     dir: 'column' | 'row',
-    gap: Size,
-    padding: Size,
-    screen: boolean,
-    justify: 'center' | 'start' | 'end';
-    align: "center" | "start" | "end" | "stretch";
+    gap?: Size,
+    padding?: Size,
+    screen?: boolean,
+    justify?: 'center' | 'start' | 'end';
+    align?: "center" | "start" | "end" | "stretch";
   }>(), {
     gap: 'm',
     padding: 'm',

@@ -24,6 +24,11 @@
   margin: 0;
   font-weight: normal;
   outline-offset: var(--space-xs);
+  outline-color: var(--c-primary);
+  outline-width: 2px;
+}
+*:focus {
+  outline-style: solid;
 }
 
 body {

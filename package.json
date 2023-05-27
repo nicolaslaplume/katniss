@@ -15,6 +15,7 @@
     "@types/lodash": "^4.14.194",
     "autoprefixer": "^10.4.14",
     "lodash": "^4.17.21",
+    "oh-vue-icons": "^1.0.0-rc3",
     "postcss-nested": "^6.0.1",
     "vue": "^3.3.2"
   },

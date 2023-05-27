@@ -141,3 +141,7 @@
     border-color: transparent;
     background-color: transparent;
 }
+
+.no-background {
+    background: none !important;
+}

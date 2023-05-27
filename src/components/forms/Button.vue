@@ -1,19 +1,11 @@
 <script setup lang="ts">
-// ToDo Toggle, size, spinner,
-// color, dontBubbleLoading,
-
-import type {SemanticActivecolor} from '../types';
+// ToDo Toggle, size 
+  import type {SemanticActiveColor} from '../types';
   import {uniqueId} from 'lodash';
   import { LoadingContext, DisabledContext } from './context';
   import { createEvent } from './KatnissEvent';
-  const id = uniqueId();
-  const emit = defineEmits(['click']);
-
-  const loading = LoadingContext.inject();
-  const formDisabled = DisabledContext.inject();
-
   const props = withDefaults(defineProps<{
-    color?: SemanticActivecolor;
+    color?: SemanticActiveColor;
     circle?: boolean,
     label?: string,
     type?: 'button' | 'submit',
@@ -25,6 +17,13 @@ import type {SemanticActivecolor} from '../types';
     label: '',
     disabled: false,
   });
+  
+  const id = uniqueId();
+  const emit = defineEmits(['click']);
+
+  const loading = LoadingContext.inject();
+  const formDisabled = DisabledContext.inject();
+
 
   const onClick = ()=>{
     emit('click', createEvent({
@@ -75,7 +74,7 @@ import type {SemanticActivecolor} from '../types';
   cursor: pointer;
 
   border-radius: var(--space-m);
-  transition: all var(--speed-n);
+  transition: filter var(--speed-n);
 
   &.circle {
     border-radius: 100%;

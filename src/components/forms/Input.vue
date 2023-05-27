@@ -1,22 +1,13 @@
 <script setup lang="ts">
   import {uniqueId} from 'lodash';
   import { LoadingContext, DisabledContext, ValidContext } from './context';
-import { ref, watch } from 'vue';
-  const id = uniqueId();
-  const emit = defineEmits(['update:modelValue']);
-
-
-  const loading = LoadingContext.inject();
-  const formDisabled = DisabledContext.inject();
-  const valid = ValidContext.inject();
-
+  import { ref, watch } from 'vue';
   const props = withDefaults(defineProps<{
-    name: string,
+    name?: string,
     type?: 'text' | 'password',
     label?: string,
     disabled?: boolean,
     // validators?: string[],
-
     modelValue?: string,
   }>(), {
     name: '',
@@ -26,10 +17,23 @@ import { ref, watch } from 'vue';
     modelValue: '',
   });
 
+
+  const id = uniqueId();
+  const emit = defineEmits(['update:modelValue']);
+
+
+  const loading = LoadingContext.inject();
+  const formDisabled = DisabledContext.inject();
+  const valid = ValidContext.inject();
+
   const valueRef = ref(props.modelValue);
   watch(()=>props.modelValue,()=>{
     valueRef.value = props.modelValue;
   });
+
+  watch(valueRef, ()=>{
+    // Run Validation
+  })
 
   const onUpdate = ({target}: Event )=>{
     const value = (target && 'value' in target)? target.value as string : '';

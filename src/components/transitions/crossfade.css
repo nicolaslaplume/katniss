@@ -9,7 +9,7 @@
     &-move,
     &-enter-active,
     &-leave-active {
-        transition: all var(--speed-n);
+        transition: opacity var(--speed-n);
     }
 
     /* 2. declare enter from and leave to state */
