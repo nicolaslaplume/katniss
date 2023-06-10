@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Button, Modal, Flex, Drawer, HelpTooltip, useAlert } from '../components';
+import { Button, Modal, Flex, Drawer, HelpTooltip, useAlert, useNotification } from '../components';
 
 const {alert, prompt} = useAlert();
+const notify = useNotification();
 
 const isModalOpened = ref(false);
 const toggleModal = ()=>{
@@ -23,6 +24,16 @@ const doPrompt = async ()=>{
     console.log('done: ', result);
 }
 
+let count = 0;
+
+const doNote = ()=>{
+    notify({
+        msg: 'Hello ' + (++count),
+        type: 'info',
+        secondsToLive: 4,
+    });
+}
+
 </script>
 
 <template>
@@ -33,6 +44,7 @@ const doPrompt = async ()=>{
     <Button @click="toggleDrawer">Open Drawer</Button>
     <Button @click="doAlert">Alert!</Button>
     <Button @click="doPrompt">Prompt?</Button>
+    <Button @click="doNote">Info</Button>
     <HelpTooltip>
         <span>This is the thing that does the thing</span>
     </HelpTooltip>

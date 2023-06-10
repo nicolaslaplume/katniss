@@ -9,7 +9,7 @@ export {default as Drawer} from './divs/Drawer.vue';
 export {default as Spinner} from './other/Spinner.vue';
 export {default as Divider} from './other/Divider.vue';
 export {default as HelpTooltip} from './other/HelpTooltip.vue';
-export { useAlert } from './other/useAlert';
+
 export { default as KatnissProvider } from './providers/KatnissProvider.vue';
 
 export {default as Form} from './forms/Form.vue';
@@ -21,4 +21,7 @@ export {default as RadioButton} from './forms/RadioButton.vue';
 
 export {default as NoiseEffect} from './transitions/NoiseEffect.vue';
 
-export type {KatnissEvent} from './forms/KatnissEvent';
+export { useAlert } from './other/useAlert';
+export { useNotification } from './other/useNotification';
+
+export type { KatnissEvent } from './forms/KatnissEvent';

@@ -24,9 +24,11 @@ const props = defineProps<{
   z-index: var(--z-index-drawer);
   top: 0;
   right: 0;
+  min-width: 300px;
   width: 25vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
   display: flex;
   transition: right var(--speed-n);
 }
@@ -47,7 +49,7 @@ const props = defineProps<{
 
 .slide-leave-to,
 .slide-enter-from {
-    right: -25vw;
+    right: min(-300px,-25vw);
 }
 
 </style>

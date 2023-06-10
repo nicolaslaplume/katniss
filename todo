@@ -1,19 +1,16 @@
 Forms
-    Button size
-    FloatingAction
+   // Button size
+   // FloatingAction
     Rating
     Select *
     Slider *
 
-Portals
-    Notification
-
 Surfaces
    // Accordion
-    Tabs
+   // Tabs
     Header
         Dynamic Allow injects from any place?
-    Footer
+   // Footer
 
 Navigation
     Breadcrumbs
@@ -46,10 +43,6 @@ Language Support (just a standarized method to do it)
 
 
 
-
-
-
-Multiple States Checkbox ? like a button that switches between multiple values and not just 2
 
 
 Pro

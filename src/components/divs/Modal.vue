@@ -44,6 +44,7 @@ const props = defineProps<{
 .modal-mask {
   position: fixed;
   z-index: var(--z-index-modal);
+  backdrop-filter: blur(5px);
   top: 0;
   left: 0;
   width: 100%;
