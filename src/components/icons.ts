@@ -30,7 +30,8 @@ import {  FaRegularSquare,
     FaRegularHeart,
     FaSpinner,
     FaChevronRight,
-    FaHeart 
+    FaHeart ,
+    FaInfoCircle
 } from "oh-vue-icons/icons";
 import type { App } from "vue";
 
@@ -68,6 +69,7 @@ const initIcons = (app: App)=>{
 
         FaSpinner,
         FaChevronRight,
+        FaInfoCircle,
         
         );
     app.component("v-icon", OhVueIcon);

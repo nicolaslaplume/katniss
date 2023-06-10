@@ -1,21 +1,12 @@
 Forms
     Button size
-    Form data connection
-    RadioButton
-        as "Checkbox"
-        as "Toggable Buttons Group"
     FloatingAction
     Rating
     Select *
     Slider *
 
 Portals
-    Tooltip
-        Info (i)
     Notification
-    Modal Dialog
-    Drawer
-    Alert / Prompt
 
 Surfaces
    // Accordion

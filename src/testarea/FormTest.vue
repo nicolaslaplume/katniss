@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Flex, Form, Button, Input, Box, Checkbox } from '../components';
+import { Flex, Form, Button, Input, Box, Checkbox, RadioButton } from '../components';
 import type {KatnissEvent} from '../components';
 const log = console.log;// (...args: any[])=>{} // 
 
@@ -33,6 +33,11 @@ const onLoadNonBlocking = async({isAsync}: KatnissEvent)=>{
     done();
 }
 
+const options = [{
+  value: 'name', label: 'Name',
+},{
+  value: 'other', label: 'Other',
+}]
 
 </script>
 
@@ -45,6 +50,7 @@ const onLoadNonBlocking = async({isAsync}: KatnissEvent)=>{
       <Button color="secondary" @click="onLoad">Load String</Button>
       <Button color="ghost" @click="onLoadNonBlocking">Load non-blocking</Button>
       <Input v-model="addressValue" name="address" @update:modelValue="log" />
+      <RadioButton :options="options" name="radio"></RadioButton>
       <Button type="submit">
         Submit
       </Button>

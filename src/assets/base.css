@@ -8,6 +8,12 @@
 :root {
   --color-background: var(--c-white);
   --color-text : var(--c-main);
+
+  --z-index-drawer: 9700;
+  --z-index-modal: 9800;
+  --z-index-notification: 9900;
+  --z-index-tooltip: 10000;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,3 +64,7 @@ html, body, #app {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.hiddeninput {
+  display: none !important;
+} 

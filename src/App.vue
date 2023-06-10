@@ -6,8 +6,15 @@ import NoiseTest from './testarea/NoiseTest.vue';
 import CheckboxTest from './testarea/CheckboxTest.vue';
 import ToggleTest from './testarea/ToggleTest.vue';
 import CollapseTest from './testarea/CollapseTest.vue';
+import PortalTest from './testarea/PortalTest.vue';
+import {KatnissProvider} from './components';
 </script>
 
 <template>
-  <FormTest/>
+  <KatnissProvider>
+    <div class="app">
+      <PortalTest/>
+    </div>
+    <portal-target multiple name="overlays"></portal-target>
+  </KatnissProvider>
 </template>

@@ -1,11 +1,11 @@
 <template>
     <transition
-      name="expand"
+      name="__expand__"
       @enter="enter"
       @after-enter="afterEnter"
       @leave="leave"
     >
-      <slot/>
+      <slot></slot>
     </transition>
   </template>
 <script lang="ts">
@@ -61,14 +61,14 @@ export default {
 </script>
 
 <style>
-.expand-enter-active,
-.expand-leave-active {
+.__expand__-enter-active,
+.__expand__-leave-active {
   transition: height var(--speed-n) ease-in-out;
   overflow: hidden;
 }
 
-.expand-enter,
-.expand-leave-to {
+.__expand__-enter,
+.__expand__-leave-to {
   height: 0;
 }
 </style>
