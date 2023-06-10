@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue';
   import { uniqueId } from 'lodash';
-  import { LoadingContext, DisabledContext, ValidContext} from './context';
+  import { LoadingContext, DisabledContext, ValidContext, DataConnectorContext} from './context';
   import { createEvent } from './KatnissEvent';
   const props = withDefaults(defineProps<{
     disabled?: boolean,
-    // attachStorage?: boolean,
+    attachStorage?: string,
   }>(), {
     disabled: false,
   });
@@ -16,7 +16,6 @@
   const loading = LoadingContext.provide();
   const formDisabled = DisabledContext.provide();
   ValidContext.provide();
-
   
 
   watch(()=>props.disabled, ()=>{
@@ -45,6 +44,11 @@
       loading,
     }));
   }
+
+  if (props.attachStorage) {
+    DataConnectorContext.provide(props.attachStorage, getFormValues);
+  }
+
 </script>
 
 <template>

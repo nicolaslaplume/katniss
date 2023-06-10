@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import {uniqueId} from 'lodash';
-  import { LoadingContext, DisabledContext, ValidContext } from './context';
+  import { LoadingContext, DisabledContext, ValidContext, DataConnectorContext } from './context';
   import { ref, watch } from 'vue';
+  import { getCurrentInstance } from "vue";
   const props = withDefaults(defineProps<{
     name?: string,
     type?: 'text' | 'password',
@@ -21,20 +22,26 @@
   const id = uniqueId();
   const emit = defineEmits(['update:modelValue']);
 
+  const {emitChange, value} = DataConnectorContext.inject(props.name, props.modelValue);
+
 
   const loading = LoadingContext.inject();
   const formDisabled = DisabledContext.inject();
   const valid = ValidContext.inject();
 
-  const valueRef = ref(props.modelValue);
+  const valueRef = ref(value);
   watch(()=>props.modelValue,()=>{
     valueRef.value = props.modelValue;
   });
 
   watch(valueRef, ()=>{
     // Run Validation
+
+    // update
+    emitChange();
   })
 
+  const x = getCurrentInstance();
   const onUpdate = ({target}: Event )=>{
     const value = (target && 'value' in target)? target.value as string : '';
     valueRef.value = value;

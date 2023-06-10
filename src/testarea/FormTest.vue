@@ -38,7 +38,7 @@ const onLoadNonBlocking = async({isAsync}: KatnissEvent)=>{
 
 <template>
   
-  <Form @submit="onSubmit">
+  <Form @submit="onSubmit" attach-storage="my-test">
     <Flex screen dir='column' >
       <Checkbox v-model="agreement" name="agree" label="Agree?"/>
       <Input label="Name" model-value="Nico" name="name"/>

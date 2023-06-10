@@ -85,4 +85,34 @@ const DisabledContext = {
     },
 }
 
-export { LoadingContext, ValidContext, DisabledContext };
+const dataConnectorSymbol = Symbol();
+const DataConnectorContext = {
+    provide: (name: string, getFormValues: () => Record<string, string> | undefined)=>{
+        const json = localStorage.getItem(name) ?? '{}';
+        const values = JSON.parse(json);
+        provide(dataConnectorSymbol, {
+            values,
+            emitChange: ()=>{
+                const v = getFormValues();
+                const json2 = JSON.stringify(v);
+                localStorage.setItem(name, json2);
+            }
+        });
+    },
+    inject: <T>(name: string | undefined, defaultValue: T)=>{
+        const {values, emitChange} = inject<{
+            values: any;
+            emitChange: () => void;
+        }>(dataConnectorSymbol) ?? {
+            values: {},
+            emitChange: ()=>{}
+        };
+        const value = name ? values[name] : undefined;
+        return {
+            value: value ?? defaultValue,
+            emitChange,
+        }
+    },
+}
+
+export { LoadingContext, ValidContext, DisabledContext, DataConnectorContext };

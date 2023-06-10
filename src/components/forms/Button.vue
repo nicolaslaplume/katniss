@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import Spinner from '../other/Spinner.vue';
 // ToDo Toggle, size 
   import type {SemanticActiveColor} from '../types';
   import {uniqueId} from 'lodash';
@@ -7,15 +8,15 @@
   const props = withDefaults(defineProps<{
     color?: SemanticActiveColor;
     circle?: boolean,
-    label?: string,
     type?: 'button' | 'submit',
     disabled?: boolean,
+    toggled?: boolean,
   }>(), {
     color: 'primary',
     circle: false,
     type: 'button',
-    label: '',
     disabled: false,
+    toggled: false,
   });
   
   const id = uniqueId();
@@ -41,20 +42,23 @@
       :class="{
         circle: props.circle,
         [`color-${props.color}`]: true,
+        toggled: props.toggled
       }"
+        :checked="props.toggled"
       :disabled="loading.isFormLoading() || loading.isSelfLoading(id) || formDisabled.isDisabled() || props.disabled" 
       :type="props.type" 
       @click.stop="onClick"
     >
     <TransitionGroup tag="div" name="crossfade" class="container">
-      <div  :class="{
-        hidable: true,
-        hidden: loading.isSelfLoading(id)
+      <div 
+        :class="{
+          hidable: true,
+          hidden: loading.isSelfLoading(id)
         }">
         <slot></slot>
       </div>
-      <div class="spinner" v-if="loading.isSelfLoading(id)">
-        L
+      <div v-if="loading.isSelfLoading(id)" class="crossfadable">
+        <Spinner ></Spinner>
       </div>
   </TransitionGroup>
     

@@ -1,9 +1,6 @@
 Forms
-    Button size, toggle
-    Input Validation
+    Button size
     Form data connection
-    Button Group
-    Checkbox Investigate spacing difference when theres a label
     RadioButton
         as "Checkbox"
         as "Toggable Buttons Group"
@@ -14,13 +11,14 @@ Forms
 
 Portals
     Tooltip
+        Info (i)
     Notification
     Modal Dialog
     Drawer
     Alert / Prompt
 
 Surfaces
-    Accordion
+   // Accordion
     Tabs
     Header
         Dynamic Allow injects from any place?
@@ -35,13 +33,13 @@ Navigation
         PreviewableLink (hover tooltip)
 
 Table
-    sortable, pagination, sticky header
+    sortable, pagination, sticky header, filter?
 
 Validators
+    Input Validation
     validation messages
 
 Other
-    Spinner
     Animation Transitions
     Typography (span / headings)
     Badge (animation)
@@ -61,3 +59,7 @@ Language Support (just a standarized method to do it)
 
 
 Multiple States Checkbox ? like a button that switches between multiple values and not just 2
+
+
+Pro
+    Date Picker (+ range)

@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { uniqueId } from 'lodash';
-  import { LoadingContext, DisabledContext } from './context';
+  import { LoadingContext, DisabledContext, DataConnectorContext } from './context';
   import { ref, watch } from 'vue';
-import type { SemanticColor } from '../types';
+  import type { SemanticColor } from '../types';
   const props = withDefaults(defineProps<{
     name?: string,
     label?: string,
@@ -43,18 +43,20 @@ import type { SemanticColor } from '../types';
     heart: ['fa-regular-heart', 'fa-heart'],
   };
     
+  const {emitChange, value} = DataConnectorContext.inject(props.name, props.modelValue);
 
   const loading = LoadingContext.inject();
   const formDisabled = DisabledContext.inject();
 
 
-  const valueRef = ref(props.modelValue);
+  const valueRef = ref(value);
   watch(()=>props.modelValue,()=>{
     valueRef.value = props.modelValue;
   });
   const icon = ref(icons[props.icon][valueRef.value?1:0]);
   watch(valueRef, ()=>{
     icon.value = icons[props.icon][valueRef.value?1:0];
+    emitChange();
   });
 
   const onUpdate = ({target}: Event )=>{
@@ -64,6 +66,7 @@ import type { SemanticColor } from '../types';
   };
 
   const name = props.name ?? id;
+
 
 </script>
 
@@ -80,11 +83,12 @@ import type { SemanticColor } from '../types';
         type="checkbox"
         :checked="valueRef"
         @input="onUpdate"/>
-        <div class="label">
-          <v-icon :name="icon"></v-icon>
-          {{ props.label }}
-        </div>
+      <div class="label">
+        <v-icon :name="icon"></v-icon>
+        {{ props.label }}
+      </div>
     </label>
+
 </template>
 
 <style scoped lang="scss">
@@ -93,6 +97,10 @@ import type { SemanticColor } from '../types';
     user-select: none;
     cursor: pointer;
     border-radius: var(--space-m);
+
+    &:hover {
+      text-decoration: underline;
+    }
 
     .input {
       opacity: 0;
@@ -111,6 +119,9 @@ import type { SemanticColor } from '../types';
 
   }
 
+  .hidden {
+    display: none;
+  }
 
 
 </style>
