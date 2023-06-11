@@ -12,7 +12,8 @@
 export default {
   name: 'TransitionExpand',
   methods: {
-    enter(element:HTMLElement) {
+    enter(e:Element) {
+      const element = e as HTMLElement;
       const width = getComputedStyle(element).width;
 
       element.style.width = width;
@@ -40,10 +41,12 @@ export default {
         element.style.height = height;
       });
     },
-    afterEnter(element: HTMLElement) {
+    afterEnter(e:Element) {
+      const element = e as HTMLElement;
       element.style.height = 'auto';
     },
-    leave(element: HTMLElement) {
+    leave(e:Element) {
+      const element = e as HTMLElement;
       const height = getComputedStyle(element).height;
       
       element.style.height = height;

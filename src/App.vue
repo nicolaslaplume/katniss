@@ -14,7 +14,7 @@ import {KatnissProvider} from './components';
 <template>
   <KatnissProvider>
     <div class="app">
-      <Box3dTest/>
+      <PortalTest/>
     </div>
     <portal-target multiple name="overlays"></portal-target>
   </KatnissProvider>

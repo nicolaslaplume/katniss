@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineSlots } from 'vue';
 import Button from '../forms/Button.vue';
 
 defineEmits(['close']);

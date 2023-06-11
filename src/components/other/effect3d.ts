@@ -8,15 +8,14 @@ const defaultStyle = {
     cursor: 'pointer'
 };
 
-export type EffectConfig = {x?: number, y?: number} | undefined;
+export type EffectConfig = {x?: number, y?: number} | boolean | undefined;
 
-function provideEffect3d (p: EffectConfig ){
+function provideEffect3d (p: any ){
     const enabled = !isUndefined(p);
     const props = {
         x: p?.x ?? 25,
         y: p?.y ?? 25,
     }
-    console.log({enabled, props});
     const style3d = ref(enabled? defaultStyle : {
         transition: '',
         transform: ``,
