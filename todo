@@ -13,15 +13,17 @@ Surfaces
    // Footer
 
 Navigation
-    Breadcrumbs
     ContextMenu
     Pagination
     Link
         Router
         PreviewableLink (hover tooltip)
+    Breadcrumbs
+        the component itself is boring. a dynamic path that generates a bc that can be used easily would be better
+        but that means it must be done AFTER Link and Router
 
 Table
-    sortable, pagination, sticky header, filter?
+    sortable, pagination, sticky header
 
 Validators
     Input Validation

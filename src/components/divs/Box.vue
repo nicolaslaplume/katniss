@@ -1,23 +1,34 @@
 <script setup lang="ts">
-    import type {Size, SemanticColor} from '../types';
-  withDefaults(defineProps<{
+    import { provideEffect3d , type EffectConfig} from '../other/effect3d';
+import type {Size, SemanticColor} from '../types';
+  const props = withDefaults(defineProps<{
     color?: SemanticColor;
     inverted?: boolean;
     padding?: Size;
     shadow?: boolean;
     displaced?: boolean;
+    effect3d: EffectConfig;
   }>(), {
     padding: 'm',
     shadow: false,
     displaced: false,
+    effect3d: undefined,
 
     color: 'main',
     inverted: false,
   });
+
+  const {style3d, mouseleave, mousemove} = provideEffect3d(props.effect3d);
+
+
 </script>
 
 <template>
 	<div 
+    @mousemove="mousemove"
+    @mouseleave="mouseleave"
+    :style="style3d"
+
     class="box"
     :class="{
         [`padding-${padding}`]: true,

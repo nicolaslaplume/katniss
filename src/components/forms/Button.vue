@@ -5,18 +5,21 @@
   import {uniqueId} from 'lodash';
   import { LoadingContext, DisabledContext } from './context';
   import { createEvent } from './KatnissEvent';
+import { provideEffect3d, type EffectConfig } from '../other/effect3d';
   const props = withDefaults(defineProps<{
     color?: SemanticActiveColor;
     circle?: boolean,
     type?: 'button' | 'submit',
     disabled?: boolean,
     toggled?: boolean,
+    effect3d: EffectConfig,
   }>(), {
     color: 'primary',
     circle: false,
     type: 'button',
     disabled: false,
     toggled: false,
+    effect3d: undefined,
   });
   
   const id = uniqueId();
@@ -33,6 +36,8 @@
       loading,
     }));
   }
+
+  const {style3d, mouseleave, mousemove} = provideEffect3d(props.effect3d);
 </script>
 
 <template>
@@ -48,6 +53,10 @@
       :disabled="loading.isFormLoading() || loading.isSelfLoading(id) || formDisabled.isDisabled() || props.disabled" 
       :type="props.type" 
       @click.stop="onClick"
+
+      @mousemove="mousemove"
+      @mouseleave="mouseleave"
+      :style="style3d"
     >
     <TransitionGroup tag="div" name="crossfade" class="container">
       <div 
@@ -89,7 +98,7 @@
     text-decoration: underline;
   }
   &:active {
-      filter: sepia(0.4) saturate(0.2);
+      filter: sepia(0.4) saturate(0.2) !important;
       text-decoration: underline;
   }
 
@@ -99,7 +108,7 @@
         filter: brightness(0.6) saturate(3) sepia(0.4);
     }
     &:active {
-        filter: brightness(0.6) sepia(0.4) saturate(0.2);
+        filter: brightness(0.6) sepia(0.4) saturate(0.2) !important;
     }
   }
 
